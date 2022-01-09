@@ -11,8 +11,33 @@ const generate = ({
   contributing,
   tests,
   contact,
-}) =>
-  `# ${title}
+}) => {
+  let badge;
+  switch (license) {
+    case "MIT":
+      badge =
+        "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+      break;
+    case "Apache":
+      badge =
+        "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+      break;
+    case "Boost":
+      badge =
+        "[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)";
+      break;
+    case "GNU":
+      badge =
+        "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+      break;
+    case "BSD":
+      badge =
+        "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
+      break;
+    case "No license":
+      badge = "";
+  }
+  return `# ${title}
 
 ## Description of the project:
 ${description}
@@ -27,7 +52,7 @@ ${installation}
 ${usage}
 
 ## License:   
-${license}
+${badge}
 
 ## Contributing:   
 ${contributing}
@@ -37,6 +62,7 @@ ${tests}
 
 ## Questions:   
 ${contact}`;
+};
 
 const init = () => {
   return inquirer
