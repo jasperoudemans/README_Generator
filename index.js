@@ -1,6 +1,23 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const getBadge = (license) => {
+  switch (license) {
+    case "MIT":
+      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+    case "Apache":
+      return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+    case "Boost":
+      return "[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)";
+    case "GNU":
+      return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+    case "BSD":
+      return "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
+    case "No license":
+      return "";
+  }
+};
+
 const generate = ({
   title,
   description,
@@ -12,32 +29,10 @@ const generate = ({
   tests,
   contact,
 }) => {
-  let badge;
-  switch (license) {
-    case "MIT":
-      badge =
-        "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
-      break;
-    case "Apache":
-      badge =
-        "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
-      break;
-    case "Boost":
-      badge =
-        "[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)";
-      break;
-    case "GNU":
-      badge =
-        "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
-      break;
-    case "BSD":
-      badge =
-        "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
-      break;
-    case "No license":
-      badge = "";
-  }
-  return `# ${title}
+  const badge = getBadge(license);
+
+  return `# ${title}      
+${badge}
 
 ## Description of the project:
 ${description}
@@ -50,9 +45,6 @@ ${installation}
     
 ## Usage:   
 ${usage}
-
-## License:   
-${badge}
 
 ## Contributing:   
 ${contributing}
