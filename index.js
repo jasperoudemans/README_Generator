@@ -109,7 +109,7 @@ const init = () => {
     ])
     .then((data) => {
       const readmeContent = generate(data);
-      fs.writeFile("README.md", readmeContent, (err) =>
+      fs.writeFile("SampleREADME.md", readmeContent, (err) =>
         err ? console.log(err) : console.log("Success")
       );
     });
