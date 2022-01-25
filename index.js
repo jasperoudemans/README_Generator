@@ -62,7 +62,7 @@ const init = () => {
       {
         type: "input",
         name: "title",
-        message: "Enter a title for your repository..",
+        message: "Enter a title for your project..",
       },
       {
         type: "input",
